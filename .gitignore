@@ -57,3 +57,10 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Environment variables, never commit this file
+.env
+
+# Config files
+package-lock.json
+yarn.lock
