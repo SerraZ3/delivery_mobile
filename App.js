@@ -24,6 +24,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {NAME_DELIVERY} from 'react-native-dotenv';
+
 const App: () => React$Node = () => {
   return (
     <>
@@ -61,7 +63,7 @@ const App: () => React$Node = () => {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Learn More</Text>
               <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
+                Read the docs to discover what to do next: {NAME_DELIVERY}
               </Text>
             </View>
             <LearnMoreLinks />
