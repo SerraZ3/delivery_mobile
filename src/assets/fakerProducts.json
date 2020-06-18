@@ -12,6 +12,7 @@
           }
         ]
       },
+
       {
         "name": "4 queijos",
         "price": "21.50",
@@ -23,6 +24,24 @@
       },
       {
         "name": "Portuguesa",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Pizza de calabreza",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Pizza de calabreza",
         "price": "21.50",
         "images": [
           {
@@ -62,6 +81,24 @@
             "url": "pizza.jpg"
           }
         ]
+      },
+      {
+        "name": "Pizza de calabreza",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Pizza de calabreza",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
       }
     ]
   },
@@ -89,6 +126,24 @@
       },
       {
         "name": "Pepsi 2l",
+        "price": "5.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Guarana 2L",
+        "price": "5.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Guarana 2L",
         "price": "5.50",
         "images": [
           {
