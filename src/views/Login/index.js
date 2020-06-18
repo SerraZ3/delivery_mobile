@@ -7,6 +7,8 @@ import {ViewButtonLogin} from './styles';
 
 import {Gradient, InputRound} from '../../styles';
 
+import {useDispatch} from 'react-redux';
+
 import {
   NAME_DELIVERY,
   PRIMARY_COLOR,
@@ -22,16 +24,19 @@ const Login = ({navigation}) => {
   const [submit, setSubmit] = useState(false);
   const [email, setEmail] = useState('serra.henrique1@gmail.com');
   const [password, setPassword] = useState('henrique123');
-  // Similar ao componentDidMount e componentDidUpdate:
 
+  const dispatch = useDispatch();
+
+  function addAuth(refresh_token, token, type) {
+    dispatch({type: 'ADD_AUTH', auth: {refresh_token, token, type}});
+  }
   useEffect(() => {
     const handleSubmit = async () => {
       try {
         setLoading(true);
-
-        const response = await api.post('/', {email, password});
+        const response = await api.post('/auth/login', {email, password});
         let data = response.data.data;
-
+        addAuth(data.refreshToken, data.token, data.type);
         setLoading(false);
         navigation.dispatch(
           CommonActions.reset({
@@ -42,7 +47,6 @@ const Login = ({navigation}) => {
       } catch (error) {
         setLoading(false);
         alert('Email ou senha inválido');
-        console.log(error);
       }
       setSubmit(false);
     };
