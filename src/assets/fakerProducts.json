@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "Mais procurados",
+    "products": [
+      {
+        "name": "Pizza de calabreza",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "4 queijos",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Portuguesa",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pizzas",
+    "products": [
+      {
+        "name": "Pizza de calabreza",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "4 queijos",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Portuguesa",
+        "price": "21.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bebidas",
+    "products": [
+      {
+        "name": "Guarana 2L",
+        "price": "5.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Coca-cola 1L",
+        "price": "5.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      },
+      {
+        "name": "Pepsi 2l",
+        "price": "5.50",
+        "images": [
+          {
+            "url": "pizza.jpg"
+          }
+        ]
+      }
+    ]
+  }
+]
