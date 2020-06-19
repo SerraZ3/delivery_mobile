@@ -12,7 +12,7 @@ import api from '../services/api';
 const Stack = createStackNavigator();
 
 const SessionStack = () => {
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.user.auth.token);
   const dispatch = useDispatch();
 
   function addUser(user) {
