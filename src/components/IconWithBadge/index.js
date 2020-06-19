@@ -1,8 +1,16 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 
-function IconWithBadge({name, badgeCount, color, size}) {
+function IconWithBadge({name, color, size}) {
+  const [badgeCount, setBadgeCount] = useState(0);
+  const order = useSelector((state) => state.order);
+
+  useEffect(() => {
+    setBadgeCount(order.products[0].length);
+  }, [order]);
+
   return (
     <View style={{width: 24, height: 24, margin: 5}}>
       <Ionicons name={name} size={size} color={color} />
