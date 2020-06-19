@@ -22,40 +22,61 @@ const AddProduct = ({navigation, id, faker, productData}) => {
   }, []);
   useEffect(() => {
     const handleOrderAction = async () => {
-      let countProduct = null;
-      if (orderAction.type === 'add') {
-        countProduct = product + 1;
-        dispatch({
-          type: 'SET_AMOUNT_WILL_PAID',
-          amount_will_paid: toFloat(
-            toFloat(order.amount_will_paid) + toFloat(productData.price),
-          ),
-        });
-        setProduct(product + 1);
-      } else {
-        if (product > 0) {
-          countProduct = product - 1;
-          dispatch({
+      try {
+        let quantityProduct = null;
+        // Verifica se o produto existe e pega o index dele
+        let checkProductExist = order.products[0].findIndex(
+          (value) => id === value,
+        );
+        if (orderAction.type === 'add') {
+          // Produto atual +1
+          quantityProduct = product + 1;
+          // Incrementa o preço do produto no total a ser pago
+          await dispatch({
             type: 'SET_AMOUNT_WILL_PAID',
             amount_will_paid: toFloat(
-              toFloat(order.amount_will_paid) - toFloat(productData.price),
+              toFloat(order.amount_will_paid) + toFloat(productData.price),
             ),
           });
-          setProduct(product - 1);
-        }
-      }
 
-      let checkProductExist = order.products[0].findIndex(
-        (value) => id === value,
-      );
-      // Se o produto nao existir no pedidio adiciona
-      if (checkProductExist === -1) {
-        dispatch({type: 'PUSH_PRODUCT', id, quantity: countProduct});
-      } else {
-        // Se o contador for 0
-        if (countProduct === 0) {
-          dispatch({type: 'REMOVE_PRODUCT', idx: checkProductExist});
+          // Altera o valor do produto no component
+          setProduct(product + 1);
+          // Se o produto nao existir no pedidio adiciona
+          if (checkProductExist === -1) {
+            dispatch({type: 'PUSH_PRODUCT', id, quantity: quantityProduct});
+          } else {
+            dispatch({type: 'INCREMENT_PRODUCT', idx: checkProductExist});
+          }
+        } else {
+          // Só decrementa se o produto for maior que 1
+          if (product > 0) {
+            // Decrementa
+            quantityProduct = product - 1;
+            // Decrementa valor do produto no total a ser pago
+            await dispatch({
+              type: 'SET_AMOUNT_WILL_PAID',
+              amount_will_paid: toFloat(
+                toFloat(order.amount_will_paid) - toFloat(productData.price),
+              ),
+            });
+            // Altera valor do porduto no component
+            setProduct(product - 1);
+
+            // Se a quantidade do produto for 0 remove ele da lista
+            if (quantityProduct === 0) {
+              dispatch({type: 'REMOVE_PRODUCT', idx: checkProductExist});
+            } else {
+              // Se não decrementa
+              dispatch({
+                type: 'DECREMENT_PRODUCT',
+                idx: checkProductExist,
+                quantity: quantityProduct,
+              });
+            }
+          }
         }
+      } catch (error) {
+        console.warn(error);
       }
 
       setOrderAction({active: false, type: ''});
