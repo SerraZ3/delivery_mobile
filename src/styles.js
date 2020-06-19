@@ -38,7 +38,7 @@ export const InputRound = styled(TextInput).attrs((props) => ({
   backgroundColor: 'white',
   height: 40,
   color: 'black',
-  borderRadius: 18,
+  borderRadius: 5,
   paddingHorizontal: 15,
   fontSize: 13,
 });
