@@ -7,10 +7,11 @@ export const url_api = 'http://192.168.25.5:8000/v1/api/'; // Em casa
 
 const api = axios.create({
   baseURL: url_api,
+  timeout: 10000,
 });
 
 api.interceptors.request.use(async (config) => {
-  const token = store.getState().auth.token;
+  const token = store.getState().user.auth.token;
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
