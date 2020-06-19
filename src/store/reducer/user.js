@@ -20,6 +20,8 @@ function user(state = INITIAL_STATE, action) {
       return {...state, user: {...state.user, ...action.user}};
     case 'ADD_AUTH':
       return {...state, auth: {...state.auth, ...action.auth}};
+    case 'LOGOUT':
+      return INITIAL_STATE;
     default:
       return state;
       break;
