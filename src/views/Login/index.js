@@ -10,9 +10,10 @@ import {Gradient, InputRound} from '../../styles';
 import {useDispatch} from 'react-redux';
 
 import {
-  NAME_DELIVERY,
+  DELIVERY_NAME,
   PRIMARY_COLOR,
   PRIMARY_COLOR_DARK,
+  DELIVERY_NAME_IMAGE,
 } from 'react-native-dotenv';
 
 import api from '../../services/api';
@@ -22,7 +23,7 @@ import {CommonActions} from '@react-navigation/native';
 const Login = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [submit, setSubmit] = useState(false);
-  const [email, setEmail] = useState('serra.henrique1@gmail.com');
+  const [email, setEmail] = useState('cab@gmail.com');
   const [password, setPassword] = useState('henrique123');
 
   const dispatch = useDispatch();
@@ -69,14 +70,14 @@ const Login = ({navigation}) => {
           size="xlarge"
           rounded
           containerStyle={{marginVertical: 20}}
-          source={require('../../assets/pizza.png')}
+          source={require(`../../${DELIVERY_NAME_IMAGE}`)}
         />
         <Text
           h3
           style={{
             color: 'white',
           }}>
-          {NAME_DELIVERY}
+          {DELIVERY_NAME}
         </Text>
       </View>
       <View style={{flex: 1, marginHorizontal: 30}}>
@@ -111,7 +112,7 @@ const Login = ({navigation}) => {
             containerStyle={{
               width: 55,
               maxHeight: 30,
-              borderRadius: 18,
+              borderRadius: 10,
               fontSize: 10,
               marginVertical: 15,
               borderColor: 'gray',
