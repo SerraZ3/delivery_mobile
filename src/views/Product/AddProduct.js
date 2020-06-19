@@ -6,7 +6,7 @@ import {toFloat} from '../../helpers';
 // import { Container } from './styles';
 import {PRIMARY_COLOR_DARK} from 'react-native-dotenv';
 
-const AddProduct = ({navigation, id, productData}) => {
+const AddProduct = ({navigation, id, faker, productData}) => {
   const [product, setProduct] = useState(0);
   const order = useSelector((state) => state.order);
   const [orderAction, setOrderAction] = useState({active: false, type: ''});

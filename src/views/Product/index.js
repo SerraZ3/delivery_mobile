@@ -17,11 +17,22 @@ const Product = ({route: {params}, navigation}) => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        const response = await api.get(`/client/products/${params.id}`);
+        let fakerProduct = {
+          data: {
+            description: 'Pizza sabor 4 queijos',
+            name: '4 queijos',
+            price: '21.50',
+            images: [1],
+          },
+        };
+        const response = params.faker
+          ? fakerProduct
+          : await api.get(`/client/products/${params.id}`);
         let data = response.data;
         setProduct(data);
       } catch (error) {
-        alert('Erro ao procurar produto');
+        alert('Erro ao procurar produto. Verifique sua conxexão');
+        navigation.goBack();
       }
     };
     loadProduct();
@@ -34,6 +45,7 @@ const Product = ({route: {params}, navigation}) => {
       <AddProduct
         navigation={navigation}
         id={params.id}
+        faker={params.faker}
         productData={product}
       />
     </Container>

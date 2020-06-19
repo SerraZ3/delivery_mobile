@@ -9,16 +9,24 @@ import {
   PRIMARY_COLOR_DARK_TRANSPARENT,
 } from 'react-native-dotenv';
 
-const Product = ({params, product}) => {
+const Product = ({params: {faker}, product}) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
     const mapImages = (data) => {
-      let newImages = data.images.map((image) => {
-        return image.url;
-      });
+      let fakerImages = [
+        require('../../assets/refri.jpeg'),
+        require('../../assets/pizza.jpg'),
+        require('../../assets/pizza.jpg'),
+      ];
+      let newImages = faker
+        ? fakerImages
+        : data.images.map((image) => {
+            return image.url;
+          });
       setImages(newImages);
     };
+
     if (product.images) {
       mapImages(product);
     }

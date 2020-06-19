@@ -12,13 +12,13 @@ import {
 } from './styles';
 const ListItens = ({product, count, faker, navigation}) => {
   const openProduct = (id) => {
-    navigation.navigate('Product', {id});
+    navigation.navigate('Product', {id, faker});
   };
-  return product.map((value) => {
+  return product.map((value, idx) => {
     return (
       <>
         <TouchableHighlight
-          onPress={() => openProduct(value.id)}
+          onPress={() => openProduct(faker ? idx : value.id)}
           underlayColor="white">
           <TabItem>
             <Image
