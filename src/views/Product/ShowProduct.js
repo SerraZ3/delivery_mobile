@@ -4,10 +4,7 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {TextProduct} from './styles';
 
-import {
-  PRIMARY_COLOR_DARK,
-  PRIMARY_COLOR_DARK_TRANSPARENT,
-} from 'react-native-dotenv';
+import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 const Product = ({params: {faker}, product}) => {
   const [images, setImages] = useState([]);
@@ -48,9 +45,9 @@ const Product = ({params: {faker}, product}) => {
             resizeMode: 'contain',
           }}
           dotStyle={{display: 'none'}}
-          imageLoadingColor={PRIMARY_COLOR_DARK}
-          dotColor={PRIMARY_COLOR_DARK}
-          inactiveDotColor={PRIMARY_COLOR_DARK_TRANSPARENT}
+          imageLoadingColor={PRIMARY_COLOR}
+          dotColor={PRIMARY_COLOR}
+          inactiveDotColor={PRIMARY_COLOR_TRANSPARENT}
         />
       </View>
       <TextProduct h3>{product.name}</TextProduct>

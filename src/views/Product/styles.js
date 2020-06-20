@@ -3,9 +3,9 @@ import {ScrollView, View} from 'react-native';
 import {Text} from 'react-native-elements';
 
 import {
+  PRIMARY_COLOR_LIGHT,
   PRIMARY_COLOR,
-  PRIMARY_COLOR_DARK,
-  PRIMARY_COLOR_DARK_TRANSPARENT,
+  PRIMARY_COLOR_TRANSPARENT,
 } from 'react-native-dotenv';
 
 export const Container = styled(View)({
@@ -30,7 +30,7 @@ export const TabItem = styled(View)({
   padding: 10,
   justifyContent: 'space-between',
   alignItems: 'center',
-  shadowColor: PRIMARY_COLOR_DARK_TRANSPARENT,
+  shadowColor: PRIMARY_COLOR_TRANSPARENT,
   shadowOffset: {
     width: 0,
     height: 1,
@@ -43,7 +43,7 @@ export const TabItem = styled(View)({
 
 export const TabPrice = styled(Text)({
   fontSize: 13,
-  color: PRIMARY_COLOR_DARK,
+  color: PRIMARY_COLOR,
 });
 export const TabTitle = styled(Text)({
   fontSize: 13,
@@ -57,9 +57,9 @@ export const Title = styled(Text)({
   fontWeight: 'bold',
   marginLeft: 20,
   marginBottom: 10,
-  color: PRIMARY_COLOR_DARK,
+  color: PRIMARY_COLOR,
 });
 
 export const TextProduct = styled(Text).attrs((props) => ({
   ...props,
-}))({color: PRIMARY_COLOR_DARK, textAlign: 'center'});
+}))({color: PRIMARY_COLOR, textAlign: 'center'});

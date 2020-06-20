@@ -2,14 +2,14 @@ import React from 'react';
 import {View} from 'react-native';
 import {Icon, Text, Button} from 'react-native-elements';
 
-import {PRIMARY_COLOR_DARK} from 'react-native-dotenv';
+import {PRIMARY_COLOR} from 'react-native-dotenv';
 
 const ButtonBack = ({navigation}) => {
   return (
     <View
       style={{
         position: 'absolute',
-        left: 5,
+        left: -15,
         top: 0,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -18,7 +18,7 @@ const ButtonBack = ({navigation}) => {
       <Button
         buttonStyle={{backgroundColor: 'white'}}
         onPress={() => navigation.goBack()}
-        icon={<Icon name="arrow-back" size={15} color={PRIMARY_COLOR_DARK} />}
+        icon={<Icon name="arrow-back" size={15} color={PRIMARY_COLOR} />}
         containerStyle={{
           width: 45,
           height: 25,
@@ -32,8 +32,7 @@ const ButtonBack = ({navigation}) => {
         type="outline"
         iconRight
       />
-      <Text
-        style={{fontSize: 15, fontWeight: 'bold', color: PRIMARY_COLOR_DARK}}>
+      <Text style={{fontSize: 15, fontWeight: 'bold', color: PRIMARY_COLOR}}>
         Voltar
       </Text>
     </View>
