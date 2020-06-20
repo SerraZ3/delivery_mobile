@@ -8,12 +8,8 @@ const INITIAL_STATE = {
 
 function order(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'ADD_ORDER':
-      return {...state};
-    case 'REMOVE_ORDER':
-      return {...state};
-    case 'CHANGE_ORDER':
-      return {...state};
+    case 'CANCEL_ORDER':
+      return {...INITIAL_STATE, products: [[], []]};
     case 'SET_AMOUNT_WILL_PAID':
       return {
         ...state,
