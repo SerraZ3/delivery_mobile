@@ -10,33 +10,44 @@ import {
   TabTitle,
   Title,
 } from './styles';
+import {PRIMARY_COLOR_DARK_TRANSPARENT} from 'react-native-dotenv';
+
 const ListItens = ({product, count, faker, navigation}) => {
   const openProduct = (id) => {
     navigation.navigate('Product', {id, faker});
   };
   return product.map((value, idx) => {
     return (
-      <>
-        <TouchableHighlight
-          onPress={() => openProduct(faker ? idx : value.id)}
-          underlayColor="white">
-          <TabItem>
-            <Image
-              source={
-                !faker
-                  ? {uri: value.images[0].url}
-                  : count === 2
-                  ? require('../../assets/refri.jpeg')
-                  : require('../../assets/pizza.jpg')
-              }
-              style={{width: 50, height: 50}}
-              PlaceholderContent={<ActivityIndicator />}
-            />
-            <TabTitle>{value.name}</TabTitle>
-            <TabPrice>{`R$ ${value.price.replace('.', ',')}`}</TabPrice>
-          </TabItem>
-        </TouchableHighlight>
-      </>
+      <TouchableHighlight
+        onPress={() => openProduct(faker ? idx : value.id)}
+        underlayColor="white"
+        key={idx}>
+        <TabItem
+          style={{
+            shadowColor: PRIMARY_COLOR_DARK_TRANSPARENT,
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 1.41,
+            elevation: 1,
+          }}>
+          <Image
+            source={
+              !faker
+                ? {uri: value.images[0].url}
+                : count === 2
+                ? require('../../assets/refri.jpeg')
+                : require('../../assets/pizza.jpg')
+            }
+            style={{width: 50, height: 50}}
+            PlaceholderContent={<ActivityIndicator />}
+          />
+          <TabTitle>{value.name}</TabTitle>
+          <TabPrice>{`R$ ${value.price.replace('.', ',')}`}</TabPrice>
+        </TabItem>
+      </TouchableHighlight>
     );
   });
 };

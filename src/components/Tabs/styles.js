@@ -8,7 +8,7 @@ import {
 } from 'react-native-dotenv';
 
 export const Container = styled(View)({
-  height: 160,
+  height: 180,
   marginTop: 20,
 });
 
@@ -19,23 +19,14 @@ export const TabsContainer = styled(ScrollView).attrs({
 })({});
 
 export const TabItem = styled(View)({
-  width: 100,
-  height: 120,
-  backgroundColor: 'transparent',
+  width: 110,
+  height: 140,
+  backgroundColor: 'white',
   borderRadius: 5,
   marginLeft: 10,
   padding: 10,
   justifyContent: 'space-between',
   alignItems: 'center',
-  shadowColor: PRIMARY_COLOR_DARK_TRANSPARENT,
-  shadowOffset: {
-    width: 0,
-    height: 1,
-  },
-  shadowOpacity: 0.2,
-  shadowRadius: 1.41,
-
-  elevation: 2,
 });
 
 export const TabPrice = styled(Text)({
