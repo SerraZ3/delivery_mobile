@@ -12,7 +12,7 @@ import Establishment from './Establishment';
 // Informação do usuário
 import Account from './Account';
 
-import {PRIMARY_COLOR_DARK} from 'react-native-dotenv';
+import {PRIMARY_COLOR} from 'react-native-dotenv';
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
@@ -37,7 +37,7 @@ const Profile = () => {
             type="material"
             name="power-settings-new"
             size={30}
-            color={PRIMARY_COLOR_DARK}
+            color={PRIMARY_COLOR}
           />
         }
         title={'Sair/Deslogar'}

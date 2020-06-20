@@ -12,7 +12,7 @@ import {
   DELIVERY_NEIGHTBORHOOD,
   DELIVERY_CITY,
   DELIVERY_PHONE,
-  PRIMARY_COLOR_DARK,
+  PRIMARY_COLOR,
   DELIVERY_NAME_IMAGE,
 } from 'react-native-dotenv';
 
@@ -36,7 +36,7 @@ const Establishment = () => {
             type="material"
             name="location-on"
             size={40}
-            color={PRIMARY_COLOR_DARK}
+            color={PRIMARY_COLOR}
           />
         }
         title={`${DELIVERY_ADDRESS}, ${DELIVERY_NEIGHTBORHOOD},${DELIVERY_CITY}`}
@@ -44,12 +44,7 @@ const Establishment = () => {
       />
       <ListItem
         leftIcon={
-          <Icon
-            type="material"
-            name="phone"
-            size={40}
-            color={PRIMARY_COLOR_DARK}
-          />
+          <Icon type="material" name="phone" size={40} color={PRIMARY_COLOR} />
         }
         title={DELIVERY_PHONE}
         bottomDivider
