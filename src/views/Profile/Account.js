@@ -8,7 +8,7 @@ import {ListItem, Text, Icon} from 'react-native-elements';
 // Styles
 import {AccountContainer} from './styles';
 // dotenv
-import {PRIMARY_COLOR_DARK} from 'react-native-dotenv';
+import {PRIMARY_COLOR} from 'react-native-dotenv';
 
 import api from '../../services/api';
 
@@ -23,7 +23,6 @@ const Account = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await api.post('/client/user/', {email, password});
         let user = (await api.get('/client/user/', {})).data;
         addUser({
           ...user.person,
@@ -32,11 +31,7 @@ const Account = () => {
           permission: user.permission,
           id: user.id,
         });
-      } catch (error) {
-        setLoading(false);
-        alert('Email ou senha inválido');
-      }
-      setSubmit(false);
+      } catch (error) {}
     };
     if (!user.name) {
       getUser();
@@ -50,12 +45,7 @@ const Account = () => {
       </View>
       <ListItem
         leftIcon={
-          <Icon
-            type="material"
-            name="person"
-            size={40}
-            color={PRIMARY_COLOR_DARK}
-          />
+          <Icon type="material" name="person" size={40} color={PRIMARY_COLOR} />
         }
         title={user.name ? user.name : 'Nome não encontrado'}
         subtitle={user.email}
@@ -67,7 +57,7 @@ const Account = () => {
             type="material"
             name="date-range"
             size={40}
-            color={PRIMARY_COLOR_DARK}
+            color={PRIMARY_COLOR}
           />
         }
         title={
@@ -83,7 +73,7 @@ const Account = () => {
             type="material"
             name="person-pin-circle"
             size={40}
-            color={PRIMARY_COLOR_DARK}
+            color={PRIMARY_COLOR}
           />
         }
         title={user.address ? user.address : 'Endereço não registrado'}
