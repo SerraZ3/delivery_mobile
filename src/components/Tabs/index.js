@@ -10,7 +10,7 @@ import {
   TabTitle,
   Title,
 } from './styles';
-import {PRIMARY_COLOR_DARK_TRANSPARENT} from 'react-native-dotenv';
+import {PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 const ListItens = ({product, count, faker, navigation}) => {
   const openProduct = (id) => {
@@ -24,7 +24,7 @@ const ListItens = ({product, count, faker, navigation}) => {
         key={idx}>
         <TabItem
           style={{
-            shadowColor: PRIMARY_COLOR_DARK_TRANSPARENT,
+            shadowColor: PRIMARY_COLOR_TRANSPARENT,
             shadowOffset: {
               width: 0,
               height: 1,

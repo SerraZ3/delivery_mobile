@@ -1,11 +1,7 @@
 import styled from 'styled-components/native';
 import {ScrollView, Text, View} from 'react-native';
 
-import {
-  PRIMARY_COLOR,
-  PRIMARY_COLOR_DARK,
-  PRIMARY_COLOR_DARK_TRANSPARENT,
-} from 'react-native-dotenv';
+import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 export const Container = styled(View)({
   height: 180,
@@ -31,7 +27,7 @@ export const TabItem = styled(View)({
 
 export const TabPrice = styled(Text)({
   fontSize: 13,
-  color: PRIMARY_COLOR_DARK,
+  color: PRIMARY_COLOR,
 });
 export const TabTitle = styled(Text)({
   fontSize: 13,
@@ -45,5 +41,5 @@ export const Title = styled(Text)({
   fontWeight: 'bold',
   marginLeft: 20,
   marginBottom: 10,
-  color: PRIMARY_COLOR_DARK,
+  color: PRIMARY_COLOR,
 });

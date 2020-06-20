@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {Icon, Text, Button} from 'react-native-elements';
 import {useSelector, useDispatch} from 'react-redux';
 import {toFloat} from '../../helpers';
-import {PRIMARY_COLOR_DARK} from 'react-native-dotenv';
+import {PRIMARY_COLOR} from 'react-native-dotenv';
 
 const AddRemoveProduct = ({id, faker, productData, small}) => {
   const [product, setProduct] = useState(0);
@@ -104,14 +104,14 @@ const AddRemoveProduct = ({id, faker, productData, small}) => {
             <Icon
               name="remove"
               size={small ? 15 : 25}
-              color={PRIMARY_COLOR_DARK}
+              color={PRIMARY_COLOR}
               containerStyle={{margin: 0, padding: 0}}
             />
           }
           containerStyle={{
             justifyContent: 'center',
             borderRadius: 30,
-            borderColor: PRIMARY_COLOR_DARK,
+            borderColor: PRIMARY_COLOR,
             borderWidth: 1,
           }}
           type="outline"
@@ -125,16 +125,12 @@ const AddRemoveProduct = ({id, faker, productData, small}) => {
           buttonStyle={{backgroundColor: 'white'}}
           onPress={() => setOrderAction({type: 'add', active: true})}
           icon={
-            <Icon
-              name="add"
-              size={small ? 15 : 25}
-              color={PRIMARY_COLOR_DARK}
-            />
+            <Icon name="add" size={small ? 15 : 25} color={PRIMARY_COLOR} />
           }
           containerStyle={{
             justifyContent: 'center',
             borderRadius: 30,
-            borderColor: PRIMARY_COLOR_DARK,
+            borderColor: PRIMARY_COLOR,
             borderWidth: 1,
           }}
           type="outline"
