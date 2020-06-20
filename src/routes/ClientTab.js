@@ -9,10 +9,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {
-  PRIMARY_COLOR_DARK_TRANSPARENT,
-  PRIMARY_COLOR_DARK,
-} from 'react-native-dotenv';
+import {PRIMARY_COLOR_TRANSPARENT, PRIMARY_COLOR} from 'react-native-dotenv';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,8 +42,8 @@ export default function App() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: PRIMARY_COLOR_DARK,
-        inactiveTintColor: PRIMARY_COLOR_DARK_TRANSPARENT,
+        activeTintColor: PRIMARY_COLOR,
+        inactiveTintColor: PRIMARY_COLOR_TRANSPARENT,
       }}>
       <Tab.Screen name="Produtos" component={ProductStack} />
       <Tab.Screen name="Pedidos" component={Order} />

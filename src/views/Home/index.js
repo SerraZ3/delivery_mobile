@@ -6,15 +6,12 @@ import {SearchBar} from 'react-native-elements';
 import api from '../../services/api';
 import faker from '../../assets/fakerProducts.json';
 
-import {
-  PRIMARY_COLOR_DARK,
-  PRIMARY_COLOR_DARK_TRANSPARENT,
-} from 'react-native-dotenv';
+import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 const Home = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const activeFaker = true;
+  const activeFaker = false;
 
   const [search, setSearch] = useState('');
   useEffect(() => {
@@ -45,14 +42,14 @@ const Home = ({navigation}) => {
     <>
       <SearchBar
         placeholder="Pesquise por um produto"
-        placeholderTextColor={PRIMARY_COLOR_DARK_TRANSPARENT}
+        placeholderTextColor={PRIMARY_COLOR_TRANSPARENT}
         onChangeText={(value) => setSearch(value)}
         lightTheme
         round
         value={search}
         showCancel
         showLoading={loading}
-        searchIcon={{color: PRIMARY_COLOR_DARK}}
+        searchIcon={{color: PRIMARY_COLOR}}
         containerStyle={{
           backgroundColor: 'transparent',
         }}

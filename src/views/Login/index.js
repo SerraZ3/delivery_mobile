@@ -11,8 +11,8 @@ import {useDispatch} from 'react-redux';
 
 import {
   DELIVERY_NAME,
+  PRIMARY_COLOR_LIGHT,
   PRIMARY_COLOR,
-  PRIMARY_COLOR_DARK,
   DELIVERY_NAME_IMAGE,
 } from 'react-native-dotenv';
 
@@ -47,6 +47,8 @@ const Login = ({navigation}) => {
         );
       } catch (error) {
         setLoading(false);
+        console.log(error);
+
         alert('Email ou senha inválido');
       }
       setSubmit(false);
@@ -58,7 +60,7 @@ const Login = ({navigation}) => {
 
   return (
     <Gradient
-      color={[PRIMARY_COLOR, PRIMARY_COLOR_DARK]}
+      color={[PRIMARY_COLOR_LIGHT, PRIMARY_COLOR]}
       style={{justifyContent: 'center'}}>
       <View
         style={{
