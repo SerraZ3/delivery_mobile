@@ -32,30 +32,33 @@ const Login = ({navigation}) => {
     dispatch({type: 'ADD_AUTH', auth: {refresh_token, token, type}});
   }
   useEffect(() => {
+    let mounted = true;
     const handleSubmit = async () => {
       try {
-        setLoading(true);
-        const response = await api.post('/auth/login', {email, password});
-        let data = response.data.data;
-        addAuth(data.refreshToken, data.token, data.type);
-        setLoading(false);
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 1,
-            routes: [{name: 'ClientTab'}],
-          }),
-        );
+        if (mounted) {
+          setLoading(true);
+          const response = await api.post('/auth/login', {email, password});
+          let data = response.data.data;
+          addAuth(data.refreshToken, data.token, data.type);
+          setLoading(false);
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 1,
+              routes: [{name: 'ClientTab'}],
+            }),
+          );
+        }
       } catch (error) {
-        setLoading(false);
-        console.log(error);
-
-        alert('Email ou senha inválido');
+        if (mounted) {
+          setLoading(false);
+          console.log(error);
+          alert('Email ou senha inválido');
+        }
       }
-      setSubmit(false);
+      if (mounted) setSubmit(false);
     };
-    if (submit === true) {
-      handleSubmit();
-    }
+    if (submit === true) handleSubmit();
+    return () => (mounted = false);
   }, [submit]);
 
   return (
@@ -95,7 +98,6 @@ const Login = ({navigation}) => {
           keyboard={true}
           value={password}
           onChangeText={(value) => setPassword(value)}
-          // onChangeText={(pass) => this.setState({pass})}
         />
         <ViewButtonLogin>
           <Text

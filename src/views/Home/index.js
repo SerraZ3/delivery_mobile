@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
 import Tabs from '../../components/Tabs';
 
 import {SearchBar} from 'react-native-elements';
@@ -15,28 +14,34 @@ const Home = ({navigation}) => {
 
   const [search, setSearch] = useState('');
   useEffect(() => {
+    let mounted = true;
     const handleSubmit = async () => {
       try {
-        setLoading(true);
-        let page = 1;
-        let limit = 10;
-        let name = '';
-        const response = await api.get(
-          `/client/product-categories?page=${page}&limit=${limit}&name=${name}`,
-          {},
-        );
+        if (mounted) {
+          setLoading(true);
+          let page = 1;
+          let limit = 10;
+          let name = '';
+          const response = await api.get(
+            `/client/product-categories?page=${page}&limit=${limit}&name=${name}`,
+            {},
+          );
 
-        let data = activeFaker ? faker : response.data.data;
+          let data = activeFaker ? faker : response.data.data;
 
-        setProducts(data);
+          setProducts(data);
 
-        setLoading(false);
+          setLoading(false);
+        }
       } catch (error) {
-        setLoading(false);
-        alert('Conexão não estabelecida');
+        if (mounted) {
+          setLoading(false);
+          alert('Conexão não estabelecida');
+        }
       }
     };
     handleSubmit();
+    return () => (mounted = false);
   }, []);
   return (
     <>

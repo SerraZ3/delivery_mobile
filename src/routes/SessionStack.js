@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Login from '../views/Login';
@@ -19,19 +19,23 @@ const SessionStack = () => {
     dispatch({type: 'ADD_USER', user});
   }
   useEffect(() => {
+    let mounted = true;
     const isAuthenticated = async () => {
       try {
-        let user = (await api.get('/client/user/', {})).data;
-        addUser({
-          ...user.person,
-          email: user.email,
-          roles: user.roles,
-          permission: user.permission,
-          id: user.id,
-        });
+        if (mounted) {
+          let user = (await api.get('/client/user/', {})).data;
+          addUser({
+            ...user.person,
+            email: user.email,
+            roles: user.roles,
+            permission: user.permission,
+            id: user.id,
+          });
+        }
       } catch (error) {}
     };
     if (token) isAuthenticated();
+    return () => (mounted = false);
   }, []);
 
   return (
