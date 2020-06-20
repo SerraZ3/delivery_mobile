@@ -19,6 +19,14 @@ function order(state = INITIAL_STATE, action) {
         ...state,
         amount_will_paid: action.amount_will_paid,
       };
+    case 'INCREMENT_PRODUCT':
+      let incrementProduct = state.products;
+      incrementProduct[1][action.idx] = incrementProduct[1][action.idx] + 1;
+      return {...state, products: incrementProduct};
+    case 'DECREMENT_PRODUCT':
+      let decrementProduct = state.products;
+      decrementProduct[1][action.idx] = decrementProduct[1][action.idx] - 1;
+      return {...state, products: decrementProduct};
     case 'PUSH_PRODUCT':
       let addProduct = state.products;
       addProduct[0].push(action.id);
@@ -31,7 +39,6 @@ function order(state = INITIAL_STATE, action) {
       return {...state, products: removeProduct};
     default:
       return state;
-      break;
   }
 }
 
