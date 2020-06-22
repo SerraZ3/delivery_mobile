@@ -16,7 +16,7 @@ import {
   DELIVERY_CITY,
 } from 'react-native-dotenv';
 
-import api from '../../services/api';
+import getuser from '../../services/getuser';
 
 const Account = () => {
   const user = useSelector((state) => state.user.user);
@@ -29,7 +29,7 @@ const Account = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        let user = (await api.get('/client/user/', {})).data;
+        let user = await getuser();
         FAKER
           ? addUser({
               name: 'Luiz Ricardo',
