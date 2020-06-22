@@ -6,7 +6,7 @@ import ButtonBack from './ButtonBack';
 import AddRemoveProduct from '../../components/AddRemoveProduct';
 
 import {Container} from './styles';
-import api from '../../services/api';
+import showProduct from '../../services/showProduct';
 
 const Product = ({route: {params}, navigation}) => {
   const [product, setProduct] = useState({
@@ -27,10 +27,11 @@ const Product = ({route: {params}, navigation}) => {
         };
         const response = params.faker
           ? fakerProduct
-          : await api.get(`/client/products/${params.id}`);
-        let data = response.data;
-        setProduct(data);
+          : await showProduct(params.id);
+
+        setProduct(response);
       } catch (error) {
+        console.log(error);
         alert('Erro ao procurar produto. Verifique sua conxexão');
         navigation.goBack();
       }
