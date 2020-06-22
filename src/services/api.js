@@ -1,9 +1,8 @@
-import React from 'react';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 import {store} from '../store';
+import {HOST, PORT} from 'react-native-dotenv';
 
-export const url_api = 'http://192.168.25.5:8000/v1/api/'; // Em casa
+export const url_api = `http://${HOST}:${PORT}/v1/api/`;
 
 const api = axios.create({
   baseURL: url_api,
