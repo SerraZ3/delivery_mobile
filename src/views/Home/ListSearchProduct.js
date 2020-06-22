@@ -2,12 +2,13 @@ import React from 'react';
 import {ListItem, Avatar} from 'react-native-elements';
 import AddRemoveProduct from '../../components/AddRemoveProduct';
 
-const ListSearchProduct = ({product}) => {
+const ListSearchProduct = ({product, navigation, faker}) => {
   return (
     <ListItem
       leftAvatar={
         <Avatar
           rounded
+          size="medium"
           source={{
             uri: product.images[0].url,
           }}
@@ -15,8 +16,9 @@ const ListSearchProduct = ({product}) => {
         />
       }
       title={product.name ? product.name : 'Nome não encontrado'}
-      subtitle={`R$ ${product.price.replace('.', ',')}`}
+      subtitle={`R$ ${product.price.replace('.', ',')}\nMais informações`}
       bottomDivider
+      onPress={() => navigation.navigate('Product', {id: product.id, faker})}
       rightElement={
         <AddRemoveProduct small id={product.id} productData={product} />
       }

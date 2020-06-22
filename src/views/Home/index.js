@@ -86,7 +86,9 @@ const Home = ({navigation}) => {
             onRefresh={refreshList}
             refreshing={refreshing}
             ListFooterComponent={loading && <LoadingIcon />}
-            renderItem={({item, index}) => <ListSearchProduct product={item} />}
+            renderItem={({item, index}) => (
+              <ListSearchProduct navigation={navigation} product={item} />
+            )}
           />
         ) : (
           <NotFoundProduct />
