@@ -1,57 +1,73 @@
 import React, {useState, useEffect} from 'react';
-import Tabs from '../../components/Tabs';
+import {FlatList} from 'react-native';
 
 import {SearchBar} from 'react-native-elements';
-import api from '../../services/api';
+import ListByCategory from './ListByCategory';
+import ListSearchProduct from './ListSearchProduct';
+import LoadingIcon from '../../components/LoadingIcon';
+import NotFoundProduct from '../../components/NotFoundProduct';
+import searchProduct from '../../services/searchProduct';
 import faker from '../../assets/fakerProducts.json';
 
 import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 const Home = ({navigation}) => {
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalpage, setTotalPage] = useState(0);
+
   const activeFaker = false;
 
   const [search, setSearch] = useState('');
+  const [searchData, setSearchData] = useState([]);
+
+  const loadPage = async (pageNumber = page, shouldRefresh = false) => {
+    if (totalpage && pageNumber > totalpage) return;
+
+    try {
+      setLoading(true);
+
+      let limit = 5;
+
+      let response = await searchProduct(pageNumber, limit, search);
+
+      let totalPage = response.pagination.total;
+
+      let data = activeFaker ? faker : response.data;
+
+      setTotalPage(Math.ceil(totalPage / limit));
+
+      setSearchData(shouldRefresh ? data : [...searchData, ...data]);
+
+      setPage(pageNumber + 1);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      alert('Conexão não estabelecida');
+    }
+  };
+
   useEffect(() => {
-    let mounted = true;
-    const handleSubmit = async () => {
-      try {
-        if (mounted) {
-          setLoading(true);
-          let page = 1;
-          let limit = 10;
-          let name = '';
-          const response = await api.get(
-            `/client/product-categories?page=${page}&limit=${limit}&name=${name}`,
-            {},
-          );
+    loadPage(1, true);
+  }, [search]);
 
-          let data = activeFaker ? faker : response.data.data;
-
-          setProducts(data);
-
-          setLoading(false);
-        }
-      } catch (error) {
-        if (mounted) {
-          setLoading(false);
-          alert('Conexão não estabelecida');
-        }
-      }
-    };
-    handleSubmit();
-    return () => (mounted = false);
-  }, []);
+  const refreshList = async () => {
+    setRefreshing(true);
+    await loadPage(1, true);
+    setRefreshing(false);
+  };
   return (
     <>
       <SearchBar
         placeholder="Pesquise por um produto"
         placeholderTextColor={PRIMARY_COLOR_TRANSPARENT}
         onChangeText={(value) => setSearch(value)}
+        value={search}
         lightTheme
         round
-        value={search}
         showCancel
         showLoading={loading}
         searchIcon={{color: PRIMARY_COLOR}}
@@ -60,10 +76,27 @@ const Home = ({navigation}) => {
         }}
         inputStyle={{color: 'black'}}
       />
-      <Tabs
-        products={products}
-        faker={activeFaker}
-        navigation={navigation}></Tabs>
+      {search ? (
+        searchData.length > 0 ? (
+          <FlatList
+            data={searchData}
+            keyExtractor={(item) => item.id.toString()}
+            onEndReached={() => loadPage()}
+            onEndReachedThreshold={0.2}
+            onRefresh={refreshList}
+            refreshing={refreshing}
+            ListFooterComponent={loading && <LoadingIcon />}
+            renderItem={({item, index}) => <ListSearchProduct product={item} />}
+          />
+        ) : (
+          <NotFoundProduct />
+        )
+      ) : (
+        <ListByCategory
+          // faker={faker}
+          navigation={navigation}
+        />
+      )}
     </>
   );
 };
