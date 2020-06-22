@@ -52,12 +52,12 @@ const Home = ({navigation}) => {
   };
 
   useEffect(() => {
-    loadPage(1, true);
+    if (!FAKER) loadPage(1, true);
   }, [search]);
 
   const refreshList = async () => {
     setRefreshing(true);
-    await loadPage(1, true);
+    if (!FAKER) await loadPage(1, true);
     setRefreshing(false);
   };
   return (
