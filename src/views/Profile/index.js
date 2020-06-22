@@ -19,6 +19,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   function logout() {
     dispatch({type: 'LOGOUT'});
+    dispatch({type: 'CANCEL_ORDER'});
   }
   return (
     <Container>
