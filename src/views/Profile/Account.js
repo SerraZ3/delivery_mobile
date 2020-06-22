@@ -29,7 +29,8 @@ const Account = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        let user = await getuser();
+        let user = !FAKER ? await getuser() : null;
+
         FAKER
           ? addUser({
               name: 'Luiz Ricardo',
