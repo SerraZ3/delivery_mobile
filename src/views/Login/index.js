@@ -16,7 +16,7 @@ import {
   DELIVERY_NAME_IMAGE,
 } from 'react-native-dotenv';
 
-import api from '../../services/api';
+import login from '../../services/login';
 
 import {CommonActions} from '@react-navigation/native';
 
@@ -37,8 +37,9 @@ const Login = ({navigation}) => {
       try {
         if (mounted) {
           setLoading(true);
-          const response = await api.post('/auth/login', {email, password});
-          let data = response.data.data;
+          const response = await login(email, password);
+
+          let data = response.data;
           addAuth(data.refreshToken, data.token, data.type);
           setLoading(false);
           navigation.dispatch(
