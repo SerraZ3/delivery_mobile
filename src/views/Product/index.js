@@ -31,7 +31,6 @@ const Product = ({route: {params}, navigation}) => {
 
         setProduct(response);
       } catch (error) {
-        console.log(error);
         alert('Erro ao procurar produto. Verifique sua conxexão');
         navigation.goBack();
       }

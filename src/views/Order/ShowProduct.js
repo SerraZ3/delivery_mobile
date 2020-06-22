@@ -29,8 +29,6 @@ const ListProduct = () => {
           : (await productsById(order.products[0])).data;
         setProducts(response);
       } catch (error) {
-        console.log(error);
-
         alert('Erro ao carregar o produto. Verifique sua conxexão');
       }
     };
@@ -43,8 +41,6 @@ const ListProduct = () => {
       loadProduct();
     }
   }, [order]);
-  console.log(faker[0].products);
-
   return loading ? (
     <LoadingIcon />
   ) : products.length > 0 ? (

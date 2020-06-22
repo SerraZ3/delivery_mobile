@@ -47,7 +47,6 @@ const Home = ({navigation}) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
       alert('Conexão não estabelecida');
     }
   };

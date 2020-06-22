@@ -24,8 +24,6 @@ const ListByCategory = ({navigation}) => {
         }
       } catch (error) {
         if (mounted) {
-          console.log(error);
-
           alert('Conexão não estabelecida');
         }
       }
