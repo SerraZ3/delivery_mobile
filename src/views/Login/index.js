@@ -14,6 +14,7 @@ import {
   PRIMARY_COLOR_LIGHT,
   PRIMARY_COLOR,
   DELIVERY_NAME_IMAGE,
+  FAKER,
 } from 'react-native-dotenv';
 
 import login from '../../services/login';
@@ -40,7 +41,9 @@ const Login = ({navigation}) => {
           const response = await login(email, password);
 
           let data = response.data;
-          addAuth(data.refreshToken, data.token, data.type);
+          FAKER
+            ? addAuth('123456', '123456', '123456')
+            : addAuth(data.refreshToken, data.token, data.type);
           setLoading(false);
           navigation.dispatch(
             CommonActions.reset({
@@ -52,7 +55,6 @@ const Login = ({navigation}) => {
       } catch (error) {
         if (mounted) {
           setLoading(false);
-          console.log(error);
           alert('Email ou senha inválido');
         }
       }
