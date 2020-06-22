@@ -39,7 +39,7 @@ const ListItens = ({product, count, faker, navigation}) => {
                 ? {uri: value.images[0].url}
                 : count === 2
                 ? require('../../assets/refri.jpeg')
-                : require('../../assets/pizza.jpg')
+                : require('../../assets/pizza2.jpg')
             }
             style={{width: 50, height: 50}}
             PlaceholderContent={<ActivityIndicator />}

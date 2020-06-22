@@ -60,7 +60,7 @@ const ListProduct = () => {
                 source={
                   !FAKER
                     ? {uri: value.images[0].url}
-                    : require('../../assets/pizza.jpg')
+                    : require('../../assets/pizza2.jpg')
                 }
                 title={product.name[0]}
               />

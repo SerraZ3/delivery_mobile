@@ -13,8 +13,8 @@ const Product = ({params: {faker}, product}) => {
     const mapImages = (data) => {
       let fakerImages = [
         require('../../assets/refri.jpeg'),
-        require('../../assets/pizza.jpg'),
-        require('../../assets/pizza.jpg'),
+        require('../../assets/pizza2.jpg'),
+        require('../../assets/pizza2.jpg'),
       ];
       let newImages = faker
         ? fakerImages
