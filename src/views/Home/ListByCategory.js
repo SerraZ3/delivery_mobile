@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
 import Tabs from '../../components/Tabs';
 
 import productsByCategory from '../../services/productsByCategory';
+import faker from '../../assets/fakerProducts.json';
+import {FAKER} from 'react-native-dotenv';
 
-const ListByCategory = ({faker, navigation}) => {
+const ListByCategory = ({navigation}) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const ListByCategory = ({faker, navigation}) => {
           let name = '';
           const response = await productsByCategory(page, limit, name);
 
-          let data = faker ? faker : response.data;
+          let data = FAKER ? faker : response.data;
 
           setProducts(data);
         }

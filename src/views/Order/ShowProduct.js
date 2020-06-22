@@ -11,6 +11,7 @@ import AddRemoveProduct from '../../components/AddRemoveProduct';
 import LoadingIcon from '../../components/LoadingIcon';
 import NotFoundProduct from '../../components/NotFoundProduct';
 
+import {FAKER} from 'react-native-dotenv';
 import faker from '../../assets/fakerProducts.json';
 import productsById from '../../services/productsById';
 
@@ -23,9 +24,10 @@ const ListProduct = () => {
     // Carrega produtos baseado em um vetor de ids
     const loadProduct = async () => {
       try {
-        const response = await productsById(order.products[0]);
-        let data = response.data;
-        setProducts(data);
+        const response = FAKER
+          ? faker[0].products
+          : (await productsById(order.products[0])).data;
+        setProducts(response);
       } catch (error) {
         console.log(error);
 
@@ -41,6 +43,8 @@ const ListProduct = () => {
       loadProduct();
     }
   }, [order]);
+  console.log(faker[0].products);
+
   return loading ? (
     <LoadingIcon />
   ) : products.length > 0 ? (
@@ -57,9 +61,11 @@ const ListProduct = () => {
             leftAvatar={
               <Avatar
                 rounded
-                source={{
-                  uri: product.images[0].url,
-                }}
+                source={
+                  !FAKER
+                    ? {uri: value.images[0].url}
+                    : require('../../assets/pizza.jpg')
+                }
                 title={product.name[0]}
               />
             }

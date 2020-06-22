@@ -9,15 +9,17 @@ import NotFoundProduct from '../../components/NotFoundProduct';
 import searchProduct from '../../services/searchProduct';
 import faker from '../../assets/fakerProducts.json';
 
-import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
+import {
+  PRIMARY_COLOR,
+  PRIMARY_COLOR_TRANSPARENT,
+  FAKER,
+} from 'react-native-dotenv';
 
 const Home = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [page, setPage] = useState(1);
   const [totalpage, setTotalPage] = useState(0);
-
-  const activeFaker = false;
 
   const [search, setSearch] = useState('');
   const [searchData, setSearchData] = useState([]);
@@ -34,7 +36,7 @@ const Home = ({navigation}) => {
 
       let totalPage = response.pagination.total;
 
-      let data = activeFaker ? faker : response.data;
+      let data = FAKER ? faker : response.data;
 
       setTotalPage(Math.ceil(totalPage / limit));
 
@@ -94,10 +96,7 @@ const Home = ({navigation}) => {
           <NotFoundProduct />
         )
       ) : (
-        <ListByCategory
-          // faker={faker}
-          navigation={navigation}
-        />
+        <ListByCategory faker={faker} navigation={navigation} />
       )}
     </>
   );

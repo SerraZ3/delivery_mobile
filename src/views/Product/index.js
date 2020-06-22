@@ -26,7 +26,7 @@ const Product = ({route: {params}, navigation}) => {
           },
         };
         const response = params.faker
-          ? fakerProduct
+          ? fakerProduct.data
           : await showProduct(params.id);
 
         setProduct(response);
