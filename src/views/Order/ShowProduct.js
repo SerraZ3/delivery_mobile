@@ -9,15 +9,10 @@ import {ListItem, Text, Avatar} from 'react-native-elements';
 import {toFloat} from '../../helpers';
 import AddRemoveProduct from '../../components/AddRemoveProduct';
 import LoadingIcon from '../../components/LoadingIcon';
+import NotFoundProduct from '../../components/NotFoundProduct';
 
 import faker from '../../assets/fakerProducts.json';
-import api from '../../services/api';
-
-import {
-  PRIMARY_COLOR_LIGHT,
-  PRIMARY_COLOR_TRANSPARENT,
-  RED_COLOR,
-} from 'react-native-dotenv';
+import productsById from '../../services/productsById';
 
 const ListProduct = () => {
   const [loading, setLoading] = useState(false);
@@ -28,10 +23,8 @@ const ListProduct = () => {
     // Carrega produtos baseado em um vetor de ids
     const loadProduct = async () => {
       try {
-        const response = await api.get(`/client/products-by-id`, {
-          params: {products: order.products[0]},
-        });
-        let data = response.data.data;
+        const response = await productsById(order.products[0]);
+        let data = response.data;
         setProducts(data);
       } catch (error) {
         console.log(error);
@@ -84,11 +77,7 @@ const ListProduct = () => {
       );
     })
   ) : (
-    <View>
-      <Text style={{color: RED_COLOR, fontSize: 16, textAlign: 'center'}}>
-        Nenhum pedido disponível
-      </Text>
-    </View>
+    <NotFoundProduct />
   );
 };
 
