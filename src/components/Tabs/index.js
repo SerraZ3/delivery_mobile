@@ -12,14 +12,14 @@ import {
 } from './styles';
 import {PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
-const ListItens = ({product, count, faker, navigation}) => {
+const ListItens = ({product, count, navigation}) => {
   const openProduct = (id) => {
-    navigation.navigate('Product', {id, faker});
+    navigation.navigate('Product', {id});
   };
   return product.map((value, idx) => {
     return (
       <TouchableHighlight
-        onPress={() => openProduct(faker ? idx : value.id)}
+        onPress={() => openProduct(value.id)}
         underlayColor="white"
         key={idx}>
         <TabItem
@@ -34,13 +34,7 @@ const ListItens = ({product, count, faker, navigation}) => {
             elevation: 1,
           }}>
           <Image
-            source={
-              !faker
-                ? {uri: value.images[0].url}
-                : count === 2
-                ? require('../../assets/refri.jpeg')
-                : require('../../assets/pizza2.jpg')
-            }
+            source={{uri: value.images[0].url}}
             style={{width: 50, height: 50}}
             PlaceholderContent={<ActivityIndicator />}
           />
@@ -52,7 +46,7 @@ const ListItens = ({product, count, faker, navigation}) => {
   });
 };
 
-const Tabs = ({products, faker, navigation}) => (
+const Tabs = ({products, navigation}) => (
   <FlatList
     data={products}
     keyExtractor={(item) => item.id.toString()}
@@ -64,7 +58,6 @@ const Tabs = ({products, faker, navigation}) => (
             <ListItens
               product={item.products}
               count={index}
-              faker={faker}
               navigation={navigation}
             />
           </TabsContainer>

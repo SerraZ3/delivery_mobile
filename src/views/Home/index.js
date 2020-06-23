@@ -7,13 +7,8 @@ import ListSearchProduct from './ListSearchProduct';
 import LoadingIcon from '../../components/LoadingIcon';
 import NotFoundProduct from '../../components/NotFoundProduct';
 import searchProduct from '../../services/searchProduct';
-import faker from '../../assets/fakerProducts.json';
 
-import {
-  PRIMARY_COLOR,
-  PRIMARY_COLOR_TRANSPARENT,
-  FAKER,
-} from 'react-native-dotenv';
+import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
 const Home = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +31,7 @@ const Home = ({navigation}) => {
 
       let totalPage = response.pagination.total;
 
-      let data = FAKER ? faker : response.data;
+      let data = response.data;
 
       setTotalPage(Math.ceil(totalPage / limit));
 
@@ -52,12 +47,12 @@ const Home = ({navigation}) => {
   };
 
   useEffect(() => {
-    if (!FAKER) loadPage(1, true);
+    loadPage(1, true);
   }, [search]);
 
   const refreshList = async () => {
     setRefreshing(true);
-    if (!FAKER) await loadPage(1, true);
+    await loadPage(1, true);
     setRefreshing(false);
   };
   return (
@@ -95,7 +90,7 @@ const Home = ({navigation}) => {
           <NotFoundProduct />
         )
       ) : (
-        <ListByCategory faker={faker} navigation={navigation} />
+        <ListByCategory navigation={navigation} />
       )}
     </>
   );

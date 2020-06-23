@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {toFloat} from '../../helpers';
 import {PRIMARY_COLOR} from 'react-native-dotenv';
 
-const AddRemoveProduct = ({id, faker, productData, small}) => {
+const AddRemoveProduct = ({id, productData, small}) => {
   const [product, setProduct] = useState(0);
   const order = useSelector((state) => state.order);
   const [orderAction, setOrderAction] = useState({active: false, type: ''});

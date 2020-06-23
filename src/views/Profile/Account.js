@@ -10,7 +10,6 @@ import {AccountContainer} from './styles';
 // dotenv
 import {
   PRIMARY_COLOR,
-  FAKER,
   DELIVERY_ADDRESS,
   DELIVERY_NEIGHTBORHOOD,
   DELIVERY_CITY,
@@ -29,25 +28,14 @@ const Account = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        let user = !FAKER ? await getuser() : null;
-
-        FAKER
-          ? addUser({
-              name: 'Luiz Ricardo',
-              email: 'Luiz@gmail.com',
-              date_birth: '10/10/1998',
-              address: `${DELIVERY_ADDRESS}, ${DELIVERY_NEIGHTBORHOOD},${DELIVERY_CITY}`,
-              roles: [1],
-              permission: [],
-              id: 1,
-            })
-          : addUser({
-              ...user.person,
-              email: user.email,
-              roles: user.roles,
-              permission: user.permission,
-              id: user.id,
-            });
+        let user = await getuser();
+        addUser({
+          ...user.person,
+          email: user.email,
+          roles: user.roles,
+          permission: user.permission,
+          id: user.id,
+        });
       } catch (error) {}
     };
     if (!user.name) {

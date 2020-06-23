@@ -6,21 +6,14 @@ import {TextProduct} from './styles';
 
 import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
-const Product = ({params: {faker}, product}) => {
+const Product = ({product}) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
     const mapImages = (data) => {
-      let fakerImages = [
-        require('../../assets/refri.jpeg'),
-        require('../../assets/pizza2.jpg'),
-        require('../../assets/pizza2.jpg'),
-      ];
-      let newImages = faker
-        ? fakerImages
-        : data.images.map((image) => {
-            return image.url;
-          });
+      let newImages = data.images.map((image) => {
+        return image.url;
+      });
       setImages(newImages);
     };
 

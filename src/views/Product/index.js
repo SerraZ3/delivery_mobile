@@ -17,17 +17,7 @@ const Product = ({route: {params}, navigation}) => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        let fakerProduct = {
-          data: {
-            description: 'Pizza sabor 4 queijos',
-            name: '4 queijos',
-            price: '21.50',
-            images: [1],
-          },
-        };
-        const response = params.faker
-          ? fakerProduct.data
-          : await showProduct(params.id);
+        const response = await showProduct(params.id);
 
         setProduct(response);
       } catch (error) {
@@ -45,7 +35,6 @@ const Product = ({route: {params}, navigation}) => {
       <AddRemoveProduct
         navigation={navigation}
         id={params.id}
-        faker={params.faker}
         productData={product}
       />
     </Container>
