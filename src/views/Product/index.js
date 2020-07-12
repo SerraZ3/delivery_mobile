@@ -30,8 +30,8 @@ const Product = ({route: {params}, navigation}) => {
   return (
     <Container>
       <ButtonBack navigation={navigation} />
-      <View style={{height: 30}}></View>
-      <ShowProduct params={params} product={product}></ShowProduct>
+      <View style={{height: 30}} />
+      <ShowProduct params={params} product={product} />
       <AddRemoveProduct
         navigation={navigation}
         id={params.id}
