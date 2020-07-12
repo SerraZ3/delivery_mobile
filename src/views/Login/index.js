@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, TouchableHighlight} from 'react-native';
 import {Button, Text, Avatar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {ViewButtonLogin} from './styles';
+import {ViewButtonLogin, Footer} from './styles';
 
-import {Gradient, InputRound} from '../../styles';
+import {ViewBackground, InputRound} from '../../styles';
 
 import {useDispatch} from 'react-redux';
 
 import {
-  DELIVERY_NAME,
-  PRIMARY_COLOR_LIGHT,
-  PRIMARY_COLOR,
   DELIVERY_NAME_IMAGE,
+  SECONDARY_COLOR,
+  PRIMARY_COLOR,
+  BACKGROUND_IMAGE,
 } from 'react-native-dotenv';
 
 import login from '../../services/login';
@@ -65,9 +65,7 @@ const Login = ({navigation}) => {
   }, [submit]);
 
   return (
-    <Gradient
-      color={[PRIMARY_COLOR_LIGHT, PRIMARY_COLOR]}
-      style={{justifyContent: 'center'}}>
+    <ViewBackground source={require(`../../${BACKGROUND_IMAGE}`)}>
       <View
         style={{
           flex: 1,
@@ -80,13 +78,6 @@ const Login = ({navigation}) => {
           containerStyle={{marginVertical: 20}}
           source={require(`../../${DELIVERY_NAME_IMAGE}`)}
         />
-        <Text
-          h3
-          style={{
-            color: 'white',
-          }}>
-          {DELIVERY_NAME}
-        </Text>
       </View>
       <View style={{flex: 1, marginHorizontal: 30}}>
         <InputRound
@@ -102,37 +93,60 @@ const Login = ({navigation}) => {
           value={password}
           onChangeText={(value) => setPassword(value)}
         />
-        <ViewButtonLogin>
-          <Text
-            style={{
-              fontSize: 20,
-              marginRight: 10,
-              color: 'white',
-              fontWeight: 'bold',
-            }}>
-            Login
-          </Text>
-          <Button
-            buttonStyle={{backgroundColor: 'white'}}
-            onPress={() => setSubmit(true)}
-            icon={<Icon name="arrow-right" size={11} color="#1A4B71" />}
-            containerStyle={{
-              width: 55,
-              maxHeight: 30,
-              borderRadius: 10,
-              fontSize: 10,
-              marginVertical: 15,
-              borderColor: 'gray',
-              borderWidth: 1,
-            }}
-            type="outline"
-            iconRight
-            loading={loading}
-            loadingProps={{size: 10}}
-          />
-        </ViewButtonLogin>
+        <Footer>
+          <TouchableHighlight
+            style={{position: 'absolute', left: 0}}
+            underlayColor="transparent"
+            onPress={() => navigation.navigate('Forgot')}>
+            <Text
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+              }}>
+              Esqueci a senha
+            </Text>
+          </TouchableHighlight>
+          <ViewButtonLogin>
+            <Text
+              style={{
+                fontSize: 20,
+                marginRight: 10,
+                color: 'white',
+                fontWeight: 'bold',
+              }}>
+              Login
+            </Text>
+            <Button
+              buttonStyle={{backgroundColor: 'white'}}
+              onPress={() => setSubmit(true)}
+              icon={<Icon name="arrow-right" size={11} color={PRIMARY_COLOR} />}
+              containerStyle={{
+                width: 55,
+                maxHeight: 30,
+                borderRadius: 10,
+                fontSize: 10,
+                marginVertical: 15,
+                borderColor: PRIMARY_COLOR,
+                borderWidth: 1,
+              }}
+              type="outline"
+              iconRight
+              loading={loading}
+              loadingProps={{size: 10}}
+            />
+          </ViewButtonLogin>
+        </Footer>
+        <View style={{position: 'absolute', bottom: 30}}>
+          <TouchableHighlight
+            underlayColor="transparent"
+            onPress={() => navigation.navigate('SignUp')}>
+            <Text style={{color: 'white'}}>
+              Não possui conta? Cadastre-se agora!
+            </Text>
+          </TouchableHighlight>
+        </View>
       </View>
-    </Gradient>
+    </ViewBackground>
   );
 };
 

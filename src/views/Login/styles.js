@@ -14,10 +14,12 @@ export const ButtonLogin = styled(Button)({
   height: 30,
   paddingHorizontal: 30,
 });
-
-export const ViewButtonLogin = styled(View)({
+export const Footer = styled(View)({
   marginHorizontal: 5,
   paddingHorizontal: 0,
+  justifyContent: 'center',
+});
+export const ViewButtonLogin = styled(View)({
   alignSelf: 'flex-end',
   flexDirection: 'row',
   alignItems: 'center',
