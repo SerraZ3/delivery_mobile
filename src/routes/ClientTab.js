@@ -26,10 +26,11 @@ export default function App() {
             case 'Pedidos':
               iconName = 'ios-cart';
               break;
-
+            case 'Lojas':
+              iconName = 'ios-business';
+              break;
             default:
               iconName = 'ios-person';
-
               break;
           }
           if (route.name === 'Pedidos') {
@@ -46,6 +47,7 @@ export default function App() {
         inactiveTintColor: PRIMARY_COLOR_TRANSPARENT,
       }}>
       <Tab.Screen name="Produtos" component={ProductStack} />
+      <Tab.Screen name="Lojas" component={ProductStack} />
       <Tab.Screen name="Pedidos" component={Order} />
       <Tab.Screen name="Conta" component={Profile} />
     </Tab.Navigator>
