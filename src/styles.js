@@ -1,8 +1,15 @@
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {View, Button, TouchableOpacity, Text, TextInput} from 'react-native';
-
+import {
+  View,
+  Button,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  ImageBackground,
+} from 'react-native';
+import {BACKGROUND_IMAGE} from 'react-native-dotenv';
 // Arquivo com componentes universais
 // Poderá ser utilizado em qualquer tela
 
@@ -41,4 +48,9 @@ export const InputRound = styled(TextInput).attrs((props) => ({
   borderRadius: 5,
   paddingHorizontal: 15,
   fontSize: 13,
+});
+
+export const ViewBackground = styled(ImageBackground)({
+  flex: 1,
+  resizeMode: 'stretch',
 });
