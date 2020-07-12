@@ -1,18 +1,17 @@
 import axios from 'axios';
 import {store} from '../store';
-import {HOST, PORT} from 'react-native-dotenv';
+import {HOST, PORT, PROTOCOL, URL_API} from 'react-native-dotenv';
 
-export const url_api = `http://${HOST}:${PORT}/v1/api/`;
+export const url_api = `${PROTOCOL}://${HOST}:${PORT}/${URL_API}`;
 
 const api = axios.create({
   baseURL: url_api,
-  timeout: 10000,
+  timeout: 30000,
 });
 
 api.interceptors.request.use(async (config) => {
   const token = store.getState().user.auth.token;
-
-  if (token) {
+  if (token && config.url !== '/auth/login') {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
