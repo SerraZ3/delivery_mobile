@@ -2,6 +2,8 @@ import React, {useState, useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import Login from '../views/Login';
+import SignUp from '../views/SignUp';
+import Forgot from '../views/Forgot';
 import ClientTab from './ClientTab';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -44,7 +46,11 @@ const SessionStack = () => {
         {token ? (
           <Stack.Screen name="ClientTab" component={ClientTab} />
         ) : (
-          <Stack.Screen name="Login" component={Login} />
+          <>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Forgot" component={Forgot} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
