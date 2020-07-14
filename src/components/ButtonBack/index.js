@@ -7,7 +7,7 @@ import {Container, ButtonContainerStyle} from './styles';
 const ButtonBack = ({navigation, bottom}) => {
   const [loading, setLoading] = useState(false);
   return (
-    <Container style={bottom ? {bottom: 30} : {top: 30}}>
+    <Container style={bottom ? {bottom: 20} : {top: 30}}>
       <Button
         buttonStyle={{backgroundColor: 'white'}}
         onPress={() => navigation.goBack()}
