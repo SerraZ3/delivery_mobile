@@ -12,9 +12,12 @@ import {
 } from './styles';
 import {PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
 
-const ListItens = ({product, count, navigation}) => {
+const ListItens = ({product, count, navigation, establishment}) => {
   const openProduct = (id) => {
-    navigation.navigate('Product', {id});
+    console.log(establishment);
+    establishment
+      ? navigation.navigate('EstablishmentProduct', {id})
+      : navigation.navigate('Product', {id});
   };
   return product.map((value, idx) => {
     return (
@@ -46,7 +49,7 @@ const ListItens = ({product, count, navigation}) => {
   });
 };
 
-const Tabs = ({products, navigation}) => (
+const Tabs = ({products, navigation, establishment}) => (
   <FlatList
     data={products}
     keyExtractor={(item) => item.id.toString()}
@@ -56,6 +59,7 @@ const Tabs = ({products, navigation}) => (
           <Title>{item.name}</Title>
           <TabsContainer>
             <ListItens
+              establishment={establishment}
               product={item.products}
               count={index}
               navigation={navigation}
