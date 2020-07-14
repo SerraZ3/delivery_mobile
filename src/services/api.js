@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {store} from '../store';
-import {HOST, PORT, PROTOCOL, URL_API} from 'react-native-dotenv';
+import {HOST, PORT, ACTIVE_PORT, PROTOCOL, URL_API} from 'react-native-dotenv';
 
-export const url_api = `${PROTOCOL}://${HOST}:${PORT}/${URL_API}`;
+export const url_api = Boolean(ACTIVE_PORT)
+  ? `${PROTOCOL}://${HOST}:${PORT}/${URL_API}`
+  : `${PROTOCOL}://${HOST}/${URL_API}`;
 
 const api = axios.create({
   baseURL: url_api,
