@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Order from '../views/Order';
 import Profile from '../views/Profile';
+import EstablishmentStack from './EstablishmentStack';
 import ProductStack from './ProductStack';
 import IconWithBadge from '../components/IconWithBadge';
 
@@ -47,7 +48,7 @@ export default function App() {
         inactiveTintColor: PRIMARY_COLOR_TRANSPARENT,
       }}>
       <Tab.Screen name="Produtos" component={ProductStack} />
-      <Tab.Screen name="Lojas" component={ProductStack} />
+      <Tab.Screen name="Lojas" component={EstablishmentStack} />
       <Tab.Screen name="Pedidos" component={Order} />
       <Tab.Screen name="Conta" component={Profile} />
     </Tab.Navigator>
