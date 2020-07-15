@@ -39,8 +39,6 @@ const Login = ({navigation}) => {
           setLoading(true);
 
           const response = await login(email, password);
-          console.log(response);
-
           let data = response.data;
           addAuth(data.refreshToken, data.token, data.type);
           setLoading(false);
@@ -52,7 +50,6 @@ const Login = ({navigation}) => {
           );
         }
       } catch (error) {
-        console.log(error);
         if (mounted) {
           setLoading(false);
           alert('Email ou senha inválido');
