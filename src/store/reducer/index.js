@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import user from './user';
 import order from './order';
+import establishment from './establishment';
 
 // Cria uma config com chave para a persistencia de dados
 const rootPersistConfig = {
@@ -22,7 +23,8 @@ const userPersistConfig = {
 
 const allReducer = combineReducers({
   user: persistReducer(userPersistConfig, user),
-  order: order,
+  order,
+  establishment,
 });
 
 export default allReducer;
