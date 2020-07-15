@@ -3,9 +3,9 @@ import {FlatList} from 'react-native';
 
 import {SearchBar} from 'react-native-elements';
 import ListByCategory from './ListByCategory';
-import ListSearchProduct from './ListSearchProduct';
+import ListSearch from '../../components/ListSearch';
 import LoadingIcon from '../../components/LoadingIcon';
-import NotFoundProduct from '../../components/NotFoundProduct';
+import NotFound from '../../components/NotFound';
 import searchProduct from '../../services/searchProduct';
 
 import {PRIMARY_COLOR, PRIMARY_COLOR_TRANSPARENT} from 'react-native-dotenv';
@@ -83,11 +83,16 @@ const Home = ({navigation}) => {
             refreshing={refreshing}
             ListFooterComponent={loading && <LoadingIcon />}
             renderItem={({item, index}) => (
-              <ListSearchProduct navigation={navigation} product={item} />
+              <ListSearch
+                navigation={navigation}
+                element={item}
+                product
+                title
+              />
             )}
           />
         ) : (
-          <NotFoundProduct />
+          <NotFound />
         )
       ) : (
         <ListByCategory navigation={navigation} />
