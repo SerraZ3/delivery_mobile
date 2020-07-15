@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import ShowProduct from './ShowProduct';
-import ButtonBack from './ButtonBack';
 import AddRemoveProduct from '../../components/AddRemoveProduct';
+import ButtonBack from '../../components/ButtonBack';
 
 import {Container} from './styles';
 import showProduct from '../../services/showProduct';
@@ -28,16 +28,18 @@ const Product = ({route: {params}, navigation}) => {
     loadProduct();
   }, []);
   return (
-    <Container>
-      <ButtonBack navigation={navigation} />
-      <View style={{height: 30}} />
-      <ShowProduct params={params} product={product} />
-      <AddRemoveProduct
-        navigation={navigation}
-        id={params.id}
-        productData={product}
-      />
-    </Container>
+    <>
+      <Container>
+        <View style={{height: 30}} />
+        <ShowProduct params={params} product={product} />
+        <AddRemoveProduct
+          navigation={navigation}
+          id={params.id}
+          productData={product}
+        />
+      </Container>
+      <ButtonBack navigation={navigation} bottom />
+    </>
   );
 };
 
