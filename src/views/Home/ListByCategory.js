@@ -15,7 +15,6 @@ const ListByCategory = ({navigation}) => {
           let limit = 4;
           let name = '';
           const response = (await productsByCategory(page, limit, name)).data;
-
           let data = response;
 
           setProducts(data);
