@@ -23,8 +23,7 @@ const Profile = () => {
   }
   return (
     <Container>
-      <Establishment></Establishment>
-      <Account></Account>
+      <Account />
       <View
         style={{
           alignItems: 'center',
