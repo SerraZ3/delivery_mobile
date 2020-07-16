@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {FlatList} from 'react-native';
 
 import {SearchBar} from 'react-native-elements';
-import ListByCategory from './ListByCategory';
+import ListProducts from './ListProducts';
 import ListSearch from '../../components/ListSearch';
 import LoadingIcon from '../../components/LoadingIcon';
 import NotFound from '../../components/NotFound';
@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
   const [searchData, setSearchData] = useState([]);
 
   const loadPage = async (pageNumber = page, shouldRefresh = false) => {
-    if (totalpage && pageNumber > totalpage) return;
+    if (!totalpage && pageNumber > totalpage) return;
 
     try {
       setLoading(true);
@@ -47,7 +47,7 @@ const Home = ({navigation}) => {
   };
 
   useEffect(() => {
-    loadPage(1, true);
+    if (search) loadPage(1, true);
   }, [search]);
 
   const refreshList = async () => {
@@ -67,6 +67,10 @@ const Home = ({navigation}) => {
         showCancel
         showLoading={loading}
         searchIcon={{color: PRIMARY_COLOR}}
+        onClear={() => {
+          setPage(1);
+          setTotalPage(0);
+        }}
         containerStyle={{
           backgroundColor: 'transparent',
         }}
@@ -95,7 +99,7 @@ const Home = ({navigation}) => {
           <NotFound />
         )
       ) : (
-        <ListByCategory navigation={navigation} />
+        <ListProducts navigation={navigation} />
       )}
     </>
   );
