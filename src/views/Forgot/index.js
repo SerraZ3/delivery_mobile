@@ -1,47 +1,46 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 import {PRIMARY_COLOR, BACKGROUND_IMAGE} from 'react-native-dotenv';
 import {InputRound, ViewBackground} from '../../styles';
 
-import signUp from '../../services/signUp';
+import resetPassword from '../../services/resetPassword';
 import ButtonBack from '../../components/ButtonBack';
+
 const Forgot = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [email, setEmail] = useState('');
-  // useEffect(() => {
-  //   let mounted = true;
-  //   const handleSubmit = async () => {
-  //     try {
-  //       if (mounted) {
-  //         setLoading(true);
-
-  //         const response = await signUp();
-  //         console.log(response);
-
-  //         let data = response.data;
-  //         addAuth(data.refreshToken, data.token, data.type);
-  //         setLoading(false);
-  //         navigation.dispatch(
-  //           CommonActions.reset({
-  //             index: 1,
-  //             routes: [{name: 'ClientTab'}],
-  //           }),
-  //         );
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //       if (mounted) {
-  //         setLoading(false);
-  //         alert('Email ou senha inválido');
-  //       }
-  //     }
-  //     if (mounted) setSubmit(false);
-  //   };
-  //   if (submit === true) handleSubmit();
-  //   return () => (mounted = false);
-  // }, [submit]);
+  useEffect(() => {
+    let mounted = true;
+    const handleSubmit = async () => {
+      try {
+        if (mounted) {
+          if (email.length < 1) {
+            alert('O e-mail obrigatório');
+            return;
+          }
+          setLoading(true);
+          const response = await resetPassword(email);
+          setLoading(false);
+          navigation.goBack();
+        }
+        alert(
+          'E-mail de recuperação enviado com sucesso. Verique sua caixa de entrada!',
+        );
+        setSubmit(false);
+      } catch (error) {
+        if (mounted) {
+          setLoading(false);
+          alert('Email ou senha inválido');
+        }
+        setSubmit(false);
+      }
+      if (mounted) setSubmit(false);
+    };
+    if (submit === true) handleSubmit();
+    return () => (mounted = false);
+  }, [submit]);
   return (
     <ViewBackground source={require(`../../${BACKGROUND_IMAGE}`)}>
       <View
@@ -71,12 +70,10 @@ const Forgot = ({navigation}) => {
           <Button
             buttonStyle={{backgroundColor: 'white'}}
             titleStyle={{color: PRIMARY_COLOR}}
-            onPress={() =>
-              alert(
-                'O e-mail foi enviado com sucesso. Verifique sua caixa de entrada',
-              )
-            }
+            onPress={() => setSubmit(true)}
             title="Enviar"
+            loading={loading}
+            loadingProps={{color: 'red'}}
           />
         </View>
         <View style={{flexDirection: 'row'}}>
