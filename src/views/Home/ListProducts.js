@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import Tabs from '../../components/Tabs';
 
-import productsByCategory from '../../services/productsByCategory';
+import productByCategoryBest from '../../services/productByCategoryBest';
 
-const ListByCategory = ({navigation}) => {
+const ListProducts = ({navigation}) => {
   const [products, setProducts] = useState([]);
+  const [top, setTop] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -14,10 +15,12 @@ const ListByCategory = ({navigation}) => {
           let page = 1;
           let limit = 4;
           let name = '';
-          const response = (await productsByCategory(page, limit, name)).data;
-          let data = response;
+          const response = await productByCategoryBest(page, limit, name);
 
+          let data = response.productCategories.data;
+          let topProduct = response.betterSellerProduct.data.products;
           setProducts(data);
+          setTop(topProduct);
         }
       } catch (error) {
         if (mounted) {
@@ -28,7 +31,7 @@ const ListByCategory = ({navigation}) => {
     loadProductCategories();
     return () => (mounted = false);
   }, []);
-  return <Tabs products={products} navigation={navigation} />;
+  return <Tabs products={products} topProducts={top} navigation={navigation} />;
 };
 
-export default ListByCategory;
+export default ListProducts;

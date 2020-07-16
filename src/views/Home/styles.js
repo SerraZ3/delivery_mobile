@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
-import {ScrollView, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {View} from 'react-native';
 
 export const ProductContainer = styled(View)({
   maxHeight: '85%',
