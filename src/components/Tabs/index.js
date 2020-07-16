@@ -10,7 +10,6 @@ const Tabs = ({products, navigation, establishment, topProducts, ranking}) => (
     data={products}
     keyExtractor={(item) => item.id.toString()}
     renderItem={({item}) => {
-      console.log(item);
       return item.products.length > 0 ? (
         <Container>
           <Title>{item.name}</Title>
