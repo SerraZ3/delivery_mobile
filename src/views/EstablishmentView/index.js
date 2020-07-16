@@ -27,7 +27,7 @@ const EstablishmentView = ({navigation}) => {
   const establishment = useSelector((state) => state.establishment);
 
   const loadPage = async (pageNumber = page, shouldRefresh = false) => {
-    if (totalpage && pageNumber > totalpage) return;
+    if (!totalpage && pageNumber > totalpage) return;
 
     try {
       setLoading(true);
@@ -105,6 +105,10 @@ const EstablishmentView = ({navigation}) => {
         showCancel
         showLoading={loading}
         searchIcon={{color: PRIMARY_COLOR}}
+        onClear={() => {
+          setPage(1);
+          setTotalPage(0);
+        }}
         containerStyle={{
           backgroundColor: 'transparent',
         }}
@@ -121,7 +125,6 @@ const EstablishmentView = ({navigation}) => {
             refreshing={refreshing}
             ListFooterComponent={loading && <LoadingIcon />}
             renderItem={({item, index}) => {
-              console.log(item);
               return (
                 <ListSearch
                   navigation={navigation}

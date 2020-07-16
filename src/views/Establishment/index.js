@@ -21,7 +21,7 @@ const Establishment = ({navigation}) => {
   const [searchData, setSearchData] = useState([]);
 
   const loadPage = async (pageNumber = page, shouldRefresh = false) => {
-    if (totalpage && pageNumber > totalpage) return;
+    if (!totalpage && pageNumber > totalpage) return;
 
     try {
       setLoading(true);
@@ -67,6 +67,10 @@ const Establishment = ({navigation}) => {
         showCancel
         showLoading={loading}
         searchIcon={{color: PRIMARY_COLOR}}
+        onClear={() => {
+          setPage(1);
+          setTotalPage(0);
+        }}
         containerStyle={{
           backgroundColor: 'transparent',
         }}
